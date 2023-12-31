@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 
 // インターフェース
-interface rotateEarthProps {
+interface showRoomProps {
     camera: THREE.PerspectiveCamera;
     room: THREE.Object3D;
     DirectionalLight: any;
@@ -13,7 +13,7 @@ interface rotateEarthProps {
 }
 
 // 20~35%
-export default function showRoomAnimation(props:rotateEarthProps){
+export default function showRoomAnimation(props:showRoomProps){
     const {
         camera, 
         room, 

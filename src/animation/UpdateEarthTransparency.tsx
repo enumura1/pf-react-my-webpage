@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 
 // インターフェース
-interface rotateEarthProps {
+interface earthTransparencyProps {
     camera: THREE.PerspectiveCamera;
     model: THREE.Object3D;
     earthMixer: any; 
@@ -16,7 +16,7 @@ interface rotateEarthProps {
 }
 
 // 10~20%
-export default function updateEarthTransparent(props: rotateEarthProps){
+export default function updateEarthTransparent(props: earthTransparencyProps){
     const {
         camera, 
         model, 
