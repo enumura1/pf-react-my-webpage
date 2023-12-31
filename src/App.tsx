@@ -10,7 +10,7 @@ import "./css/App.css";
 import "./css/mouseCursor.css"
 import "./css/Liquid.css"
 import "./css/LinkDecoration.css"
-// import "./css/MediaQuery.css"
+import "./css/MediaQuery.css"
 
 // 外部関数のインポート
 import handleResize from './utils/HandleResize';
@@ -23,7 +23,8 @@ import updatePCTransparent from './animation/UpdatePCTransparency';
 import reShowEarth from './animation/ReShowEarth';
 
 // 外部コンポーネントのインポート
-import Pointer from './utils/MouseCursor';
+import Pointer from './components/MouseCursor';
+import TopContents from './components/TopContents';
 
 export default function App() {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -31,10 +32,8 @@ export default function App() {
     const [imgScale1, setImgScale1] = useState(false);
     const [imgScale2, setImgScale2] = useState(false);
     const [imgScale3, setImgScale3] = useState(false);
-    const [showTitle, setShowTitle] = useState(false);
-    const [showheaderText, setShowheaderText] = useState(false);
-    const [showTopContainerText, setShowTopContainerText] = useState(false);
-
+    
+    
    // マウスの座標
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -329,23 +328,7 @@ export default function App() {
     };
   }, [scrollPercent]);
 
-  // 初回レンダリング時のアニメーション
-  useEffect(() => {
-    // ローディング後1秒後にclassNameを変更
-    setTimeout(() => {
-      setShowTitle(true);
-    }, 1000);
 
-    // ローディング後2秒後にclassNameを変更
-    setTimeout(() => {
-      setShowheaderText(true);
-    }, 1500);
-
-    // ローディング後3秒後にclassNameを変更
-    setTimeout(() => {
-      setShowTopContainerText(true);
-    }, 2000);
-  }, []);
 
   useEffect(() => {
     // マウスイベントリスナが追加されることで、マウスが移動したときにmouseMoveListenerが実行される
@@ -363,129 +346,106 @@ export default function App() {
   }, []);
   return (
     <>
-      <canvas ref={canvasRef} />
-      <div>
-        <Pointer name="pointer is-small" position={mousePosition} />
-        <Pointer name="pointer" position={mousePosition} />
-        <Pointer name="pointer is-large" position={mousePosition} />
-      </div>
+        <body className="text-white">
+            <canvas ref={canvasRef} />
+            <div>
+                <Pointer name="pointer is-small" position={mousePosition} />
+                <Pointer name="pointer" position={mousePosition} />
+                <Pointer name="pointer is-large" position={mousePosition} />
+            </div>
 
-      <main>
-        <header>
-          <div className='header-container'>
-            {showTitle ? (<h3 className="drwaingText headerText">
-              <a href="/">enumura<span>3D</span></a></h3>) :
-              (<div>Loading...</div>)}
-            <div className='header-right-elem'>
-              {showheaderText ? (<div className="drwaingText headerText">
-                <a href="https://qiita.com/enumura1">Qiita</a></div>) : (<div>Loading...</div>)}
-              {showheaderText ? (<div className="drwaingText headerText">
-                <a href="https://github.com/enumura1">GitHub</a></div>) : (<div></div>)}
+            <main>
+            <TopContents/>
+            <section></section>
+            <section></section>
+            {/* 地球の色が透明になる */}
+            <section>
+                <div className='house-container'>
+                <div className='hs-ctr-elem-left'>
+                    <h1 className='sectionTitle'>■ ABOUT ME</h1>
+                    <p>駆け出しエンジニア👨‍💻</p>
+                    <p>フロントエンドとモノづくり全般好きです。</p>
+                    <p>趣味でBlenderとReactをメインに触ってます。</p>
+                    <p>最近は自作キーボード・自作PC作ってみました。</p>
+                    <p>インフラから開発までどちらもできるようになりたいと思ってます。</p>
+                </div>
+                <div className='hs-ctr-elem-right'>
+                </div>
+                </div>
+            </section>
+            <section></section>
+            <section>
+                <div className='house-container'>
+                <div className='pc-ctr-elem-left'></div>
+                <div className='pc-ctr-elem-right'>
+                    <h1 className='sectionTitle'>■ Makes</h1>
+                    <h3><a href="https://play.google.com/store/apps/details?id=net.namtchrcd.smahoframeapp">
+                    ○スマホフレームApp（モバイルApp）</a></h3>
+                    <p>・Tecs：Flutter/Dart</p>
+                    <p>・OS：Android</p>
+                    <p id="process"><a href="https://zenn.dev/enumura/articles/df7d912cbbc649">
+                    ・Process：CSS（box-shadow）生成ツールの制作を振り返って</a></p>
+                    <h3><a href="https://chromewebstore.google.com/detail/sticker-memopad-tool/eakpffkclefiodbgeobocecjgckpkgab">
+                    ○sticker-memopad-tool（chrome拡張）</a></h3>
+                    <p>・Tecs：TypeScript</p>
+                    <p id="process"><a href="https://zenn.dev/enumura/articles/29fccbd7b73c6a">
+                    ・Process：chrome拡張機能 をリリースしたので開発過程を振り返ってみた</a></p>
+                    <h3><a href="https://enumura1.github.io/box-shadow-tool/">
+                    ○box shadow生成ツール（WebApp）</a></h3>
+                    <p>・Tecs：Vue.js/Vuetify/Vite/Vitest</p>
+                    <p id="process"><a href="https://zenn.dev/enumura/articles/cd776d7375ea24">
+                    ・Process：エンジニア１年目の初心者が約１か月でリリースしたモバイルアプリの制作過程</a></p>
+                </div>
+                </div>
+            </section>
+            <section></section>
+            <section>
+                <div className='house-container'>
+                <div className='info-ctr-elem-left'>
+                    <h1 className='sectionTitle'>■ Info</h1>
+                    <p>フロントメインのトピックを不定期で更新してます。</p>
+                    <h3>◆ Qiita</h3>
+                    <p className="text-overflow">
+                    <a href="https://qiita.com/enumura1/items/8449c2c0b00c8eeac6c6">
+                        ・【React】react-three-fiberで自作の3Dモデルを手軽にWebサイトに表示する</a></p>
+                    <p className="text-overflow">
+                    <a href="https://qiita.com/enumura1/items/c1dee84b87fc0f0692ad">
+                        ・【React×Blender】react-three-fiberで表示した3Dモデルに発光感（ブルーム）を付ける</a></p>
+                    <p className="text-overflow">
+                    <a href="https://qiita.com/enumura1/items/062ec1f222d8fb6badce">
+                        ・【JavaScript】Webページ内にタブ切り替えイベントを実装してみた</a></p>
+                    <h3>◆ Blender</h3>
+                    <p>Blenderで作成した3Dモデルを投稿しています。</p>
+                </div>
+                <div className='info-ctr-elem-right'>
+                    <div className='info-img-topCtr'>
+                    <img className={`${imgScale1 ? 'scale-animation' : ''}`}
+                        src="assets/sea_nightMoon.png" alt="img1" />
+                    </div>
+                    <div className='info-img-midCtr'>
+                    <img className={`${imgScale2 ? 'scale-animation' : ''}`}
+                        src="assets/south_island_house.png" alt="img2" />
+                    </div>
+                    <div className='info-img-btmCtr'>
+                    <img className={`${imgScale3 ? 'scale-animation' : ''}`}
+                        src="assets/site_scherry_blossom.png" alt="img3" />
+                    </div>
+                </div>
+                </div>
+            </section>
+            <section></section>
+            {/* ボトムコンテンツ */}
+            <section className='btmCtr1'>
+                <div className='btmCtr1Text' id='hoge'>
+                <h2>最後までご覧いただきありがとうございます</h2>
+                <p>Thank you for watching to the end!</p>
+                </div>
+            </section>
+            <div className='btmCtr2'>
+                <p>©2023 enumura3d</p>
             </div>
-          </div>
-        </header>
-        <div className='top-container'>
-          <div className='top-ctr-elem-left'>
-            {showTopContainerText ? (
-              <div className='topContainerText'>
-                <h1>こんにちは</h1>
-                <h1><span>enumura</span>です</h1>
-                <p>This is enumura’s portfolio.</p>
-              </div>) :
-              (<div>Loading...</div>)}
-          </div>
-          <div className='top-ctr-elem-right'>
-          </div>
-        </div>
-        <section></section>
-        <section></section>
-        {/* 地球の色が透明になる */}
-        <section>
-          <div className='house-container'>
-            <div className='hs-ctr-elem-left'>
-              <h1 className='sectionTitle'>■ ABOUT ME</h1>
-              <p>駆け出しエンジニア👨‍💻</p>
-              <p>フロントエンドとモノづくり全般好きです。</p>
-              <p>趣味でBlenderとReactをメインに触ってます。</p>
-              <p>最近は自作キーボード・自作PC作ってみました。</p>
-              <p>インフラから開発までどちらもできるようになりたいと思ってます。</p>
-            </div>
-            <div className='hs-ctr-elem-right'>
-            </div>
-          </div>
-        </section>
-        <section></section>
-        <section>
-          <div className='house-container'>
-            <div className='pc-ctr-elem-left'></div>
-            <div className='pc-ctr-elem-right'>
-              <h1 className='sectionTitle'>■ Makes</h1>
-              <h3><a href="https://play.google.com/store/apps/details?id=net.namtchrcd.smahoframeapp">
-                ○スマホフレームApp（モバイルApp）</a></h3>
-              <p>・Tecs：Flutter/Dart</p>
-              <p>・OS：Android</p>
-              <p id="process"><a href="https://zenn.dev/enumura/articles/df7d912cbbc649">
-                ・Process：CSS（box-shadow）生成ツールの制作を振り返って</a></p>
-              <h3><a href="https://chromewebstore.google.com/detail/sticker-memopad-tool/eakpffkclefiodbgeobocecjgckpkgab">
-                ○sticker-memopad-tool（chrome拡張）</a></h3>
-              <p>・Tecs：TypeScript</p>
-              <p id="process"><a href="https://zenn.dev/enumura/articles/29fccbd7b73c6a">
-                ・Process：chrome拡張機能 をリリースしたので開発過程を振り返ってみた</a></p>
-              <h3><a href="https://enumura1.github.io/box-shadow-tool/">
-                ○box shadow生成ツール（WebApp）</a></h3>
-              <p>・Tecs：Vue.js/Vuetify/Vite/Vitest</p>
-              <p id="process"><a href="https://zenn.dev/enumura/articles/cd776d7375ea24">
-                ・Process：エンジニア１年目の初心者が約１か月でリリースしたモバイルアプリの制作過程</a></p>
-            </div>
-          </div>
-        </section>
-        <section></section>
-        <section>
-          <div className='house-container'>
-            <div className='info-ctr-elem-left'>
-              <h1 className='sectionTitle'>■ Info</h1>
-              <p>フロントメインのトピックを不定期で更新してます。</p>
-              <h3>◆ Qiita</h3>
-              <p className="text-overflow">
-                <a href="https://qiita.com/enumura1/items/8449c2c0b00c8eeac6c6">
-                  ・【React】react-three-fiberで自作の3Dモデルを手軽にWebサイトに表示する</a></p>
-              <p className="text-overflow">
-                <a href="https://qiita.com/enumura1/items/c1dee84b87fc0f0692ad">
-                  ・【React×Blender】react-three-fiberで表示した3Dモデルに発光感（ブルーム）を付ける</a></p>
-              <p className="text-overflow">
-                <a href="https://qiita.com/enumura1/items/062ec1f222d8fb6badce">
-                  ・【JavaScript】Webページ内にタブ切り替えイベントを実装してみた</a></p>
-              <h3>◆ Blender</h3>
-              <p>Blenderで作成した3Dモデルを投稿しています。</p>
-            </div>
-            <div className='info-ctr-elem-right'>
-              <div className='info-img-topCtr'>
-                <img className={`${imgScale1 ? 'scale-animation' : ''}`}
-                  src="assets/sea_nightMoon.png" alt="img1" />
-              </div>
-              <div className='info-img-midCtr'>
-                <img className={`${imgScale2 ? 'scale-animation' : ''}`}
-                  src="assets/south_island_house.png" alt="img2" />
-              </div>
-              <div className='info-img-btmCtr'>
-                <img className={`${imgScale3 ? 'scale-animation' : ''}`}
-                  src="assets/site_scherry_blossom.png" alt="img3" />
-              </div>
-            </div>
-          </div>
-        </section>
-        <section></section>
-        {/* ボトムコンテンツ */}
-        <section className='btmCtr1'>
-          <div className='btmCtr1Text' id='hoge'>
-            <h2>最後までご覧いただきありがとうございます</h2>
-            <p>Thank you for watching to the end!</p>
-          </div>
-        </section>
-        <div className='btmCtr2'>
-          <p>©2023 enumura3d</p>
-        </div>
-      </main >
+            </main >
+        </body>
     </>
   );
 }
