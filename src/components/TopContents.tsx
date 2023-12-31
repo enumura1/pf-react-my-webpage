@@ -28,11 +28,12 @@ export default function TopContents () {
       }, 2000);
     }, []);
 
-
   return(
     <>
         <Header showTitle={showTitle} showheaderText={showheaderText} />
         <TopContainer showTopContainerText={showTopContainerText}/>
+        <section></section>
+        <section></section>
     </>
   )   
 }

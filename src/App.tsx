@@ -25,6 +25,11 @@ import reShowEarth from './animation/ReShowEarth';
 // 外部コンポーネントのインポート
 import Pointer from './components/MouseCursor';
 import TopContents from './components/TopContents';
+import Intro from './components/Intro';
+import Makes from './components/Makes';
+import Info from './components/Info';
+import Bottom from './components/Bottom';
+
 
 export default function App() {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -344,6 +349,7 @@ export default function App() {
       window.removeEventListener("mousemove", mouseMoveListener);
     };
   }, []);
+  
   return (
     <>
         <body className="text-white">
@@ -355,95 +361,11 @@ export default function App() {
             </div>
 
             <main>
-            <TopContents/>
-            <section></section>
-            <section></section>
-            {/* 地球の色が透明になる */}
-            <section>
-                <div className='house-container'>
-                <div className='hs-ctr-elem-left'>
-                    <h1 className='sectionTitle'>■ ABOUT ME</h1>
-                    <p>駆け出しエンジニア👨‍💻</p>
-                    <p>フロントエンドとモノづくり全般好きです。</p>
-                    <p>趣味でBlenderとReactをメインに触ってます。</p>
-                    <p>最近は自作キーボード・自作PC作ってみました。</p>
-                    <p>インフラから開発までどちらもできるようになりたいと思ってます。</p>
-                </div>
-                <div className='hs-ctr-elem-right'>
-                </div>
-                </div>
-            </section>
-            <section></section>
-            <section>
-                <div className='house-container'>
-                <div className='pc-ctr-elem-left'></div>
-                <div className='pc-ctr-elem-right'>
-                    <h1 className='sectionTitle'>■ Makes</h1>
-                    <h3><a href="https://play.google.com/store/apps/details?id=net.namtchrcd.smahoframeapp">
-                    ○スマホフレームApp（モバイルApp）</a></h3>
-                    <p>・Tecs：Flutter/Dart</p>
-                    <p>・OS：Android</p>
-                    <p id="process"><a href="https://zenn.dev/enumura/articles/df7d912cbbc649">
-                    ・Process：CSS（box-shadow）生成ツールの制作を振り返って</a></p>
-                    <h3><a href="https://chromewebstore.google.com/detail/sticker-memopad-tool/eakpffkclefiodbgeobocecjgckpkgab">
-                    ○sticker-memopad-tool（chrome拡張）</a></h3>
-                    <p>・Tecs：TypeScript</p>
-                    <p id="process"><a href="https://zenn.dev/enumura/articles/29fccbd7b73c6a">
-                    ・Process：chrome拡張機能 をリリースしたので開発過程を振り返ってみた</a></p>
-                    <h3><a href="https://enumura1.github.io/box-shadow-tool/">
-                    ○box shadow生成ツール（WebApp）</a></h3>
-                    <p>・Tecs：Vue.js/Vuetify/Vite/Vitest</p>
-                    <p id="process"><a href="https://zenn.dev/enumura/articles/cd776d7375ea24">
-                    ・Process：エンジニア１年目の初心者が約１か月でリリースしたモバイルアプリの制作過程</a></p>
-                </div>
-                </div>
-            </section>
-            <section></section>
-            <section>
-                <div className='house-container'>
-                <div className='info-ctr-elem-left'>
-                    <h1 className='sectionTitle'>■ Info</h1>
-                    <p>フロントメインのトピックを不定期で更新してます。</p>
-                    <h3>◆ Qiita</h3>
-                    <p className="text-overflow">
-                    <a href="https://qiita.com/enumura1/items/8449c2c0b00c8eeac6c6">
-                        ・【React】react-three-fiberで自作の3Dモデルを手軽にWebサイトに表示する</a></p>
-                    <p className="text-overflow">
-                    <a href="https://qiita.com/enumura1/items/c1dee84b87fc0f0692ad">
-                        ・【React×Blender】react-three-fiberで表示した3Dモデルに発光感（ブルーム）を付ける</a></p>
-                    <p className="text-overflow">
-                    <a href="https://qiita.com/enumura1/items/062ec1f222d8fb6badce">
-                        ・【JavaScript】Webページ内にタブ切り替えイベントを実装してみた</a></p>
-                    <h3>◆ Blender</h3>
-                    <p>Blenderで作成した3Dモデルを投稿しています。</p>
-                </div>
-                <div className='info-ctr-elem-right'>
-                    <div className='info-img-topCtr'>
-                    <img className={`${imgScale1 ? 'scale-animation' : ''}`}
-                        src="assets/sea_nightMoon.png" alt="img1" />
-                    </div>
-                    <div className='info-img-midCtr'>
-                    <img className={`${imgScale2 ? 'scale-animation' : ''}`}
-                        src="assets/south_island_house.png" alt="img2" />
-                    </div>
-                    <div className='info-img-btmCtr'>
-                    <img className={`${imgScale3 ? 'scale-animation' : ''}`}
-                        src="assets/site_scherry_blossom.png" alt="img3" />
-                    </div>
-                </div>
-                </div>
-            </section>
-            <section></section>
-            {/* ボトムコンテンツ */}
-            <section className='btmCtr1'>
-                <div className='btmCtr1Text' id='hoge'>
-                <h2>最後までご覧いただきありがとうございます</h2>
-                <p>Thank you for watching to the end!</p>
-                </div>
-            </section>
-            <div className='btmCtr2'>
-                <p>©2023 enumura3d</p>
-            </div>
+                <TopContents/>
+                <Intro/>
+                <Makes/>
+                <Info imgScale1={imgScale1} imgScale2={imgScale2} imgScale3={imgScale3}/>
+                <Bottom/>
             </main >
         </body>
     </>
