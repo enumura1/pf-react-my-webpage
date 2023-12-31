@@ -21,6 +21,9 @@ import updateRoomTransparent from './animation/UpdateRoomTransparency';
 import showPC from './animation/ShowPc';
 import updatePCTransparent from './animation/UpdatePCTransparency';
 import reShowEarth from './animation/ReShowEarth';
+import lerp from './utils/LinearCompletionFormula';
+import createParticles from './utils/createParticles';
+import createScene from './utils/createScene';
 
 // 外部コンポーネントのインポート
 import Pointer from './components/MouseCursor';
@@ -43,35 +46,9 @@ export default function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const sizes = {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
 
-    // ヘルパー(x,y,z:赤,緑,青)
-    const scene = new THREE.Scene();
-
-    // ライト（特定の方向）
-    const DirectionalLight = new THREE.DirectionalLight(0xffffff, 2);
-    DirectionalLight.position.set(5, 5, 5).normalize();
-    scene.add(DirectionalLight);
-
-    // カメラ
-    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-    camera.position.x = 0;
-    camera.position.y = 2.5;
-    camera.position.z = 5;
-    scene.add(camera);
-
-    // レンダラー
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvasRef.current!,
-      // 物体の輪郭がガクガクするのを抑える
-      antialias: true,
-      alpha: true,
-    });
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // シーンの作成
+    const { sizes, scene, DirectionalLight, camera, renderer} = createScene(canvasRef);
 
     // 地球
     let model:THREE.Object3D;
@@ -106,14 +83,6 @@ export default function App() {
       room = gltf.scene;
       scene.add(room);
 
-      // Check if the GLTF model contains animations
-      if (gltf.animations && gltf.animations.length > 0) {
-        roomMixer = new THREE.AnimationMixer(room);
-        const roomAction = roomMixer.clipAction(gltf.animations[0]);
-        roomAction.setLoop(THREE.LoopRepeat);
-        roomAction.repetitions = Infinity;
-        roomAction.play();
-      }
       room.traverse((child) => {
         if (child instanceof THREE.Mesh) {
           child.material.transparent = true;
@@ -144,26 +113,8 @@ export default function App() {
       });
     });
 
-    // ジオメトリ
-    const particlesGeometry = new THREE.BufferGeometry();
-    const numberOfParticles = 500;
-    const positionArr = new Float32Array(numberOfParticles * 3);
-
-    for (let i = 0; i < numberOfParticles * 3; i++) {
-      positionArr[i] = (Math.random() - 0.5) * 25;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArr, 3));
-
-    // マテリアル
-    const pointsMaterial = new THREE.PointsMaterial({
-      size: 0.04,
-      color: '#A6E5FF',
-    });
-
-    // メッシュ化（paricles）
-    const particles = new THREE.Points(particlesGeometry, pointsMaterial);
-    scene.add(particles);
+    // パーティクルの生成
+    createParticles(scene);
 
     const animate = () => {
       renderer.render(scene, camera);
@@ -175,11 +126,7 @@ export default function App() {
       return (scrollPercent.current - start) / (end - start);
     };
 
-    // 線形補完
-    const lerp = (x : number, y : number, a : number) => {
-      return (1 - a) * x + a * y;
-    };
-
+    // アニメーションの格納先
     const animationScripts :any= [];
 
     // 地球が回転するアニメーション
@@ -195,8 +142,7 @@ export default function App() {
           paperAirPlane,
           DirectionalLight,
           lerp,
-          scaleParcent,
-        });
+          scaleParcent});
       },
     });
 
@@ -333,21 +279,13 @@ export default function App() {
     };
   }, [scrollPercent]);
 
-
-
+  // マウント時：マウスイベントリスナを追加
   useEffect(() => {
-    // マウスイベントリスナが追加されることで、マウスが移動したときにmouseMoveListenerが実行される
     const mouseMoveListener = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
-
-    // マウント時：マウスイベントリスナを追加
-    window.addEventListener("mousemove", mouseMoveListener);
-
-    // アンマウント時：マウスイベントリスナを削除
-    return () => {
-      window.removeEventListener("mousemove", mouseMoveListener);
-    };
+        setMousePosition({ x: event.clientX, y: event.clientY });
+      };
+  
+      window.addEventListener("mousemove", mouseMoveListener);
   }, []);
   
   return (
