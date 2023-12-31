@@ -1,0 +1,140 @@
+.info-img-topCtr img,
+.info-img-midCtr img,
+.info-img-btmCtr img {
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.info-img-topCtr {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 30%;
+  height: 10%;
+  background-size: cover;
+  margin-right: 20%;
+  overflow: hidden;
+  border-radius: 13.5% 34.5% 20% 23% / 17% 19% 26% 27%;
+  animation: move 6s linear infinite;
+}
+
+.info-img-midCtr {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-size: cover;
+  background-position: center center;
+  width: 40%;
+  height: 100%;
+  margin: 5% 0;
+  margin-left: 30%;
+  overflow: hidden;
+  border-radius: 10% 30% 15% 25% / 15% 25% 20% 25%;
+  animation: move2 8s linear infinite;
+}
+
+.info-img-btmCtr {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-size: cover;
+  background-position: center center;
+  width: 30%;
+  height: 10%;
+  margin-right: 10%;
+  overflow: hidden;
+  border-radius: 10% 30% 15% 25% / 15% 25% 20% 25%;
+  animation: move3 5s linear infinite;
+}
+
+.scale-animation {
+  transform: scale(1.2);
+  transition: transform 0.7s ease-in-out;
+}
+
+@keyframes move {
+  0% {
+    border-radius: 13.5% 34.5% 20% 23% / 17% 19% 26% 27%;
+  }
+
+  16.666% {
+    border-radius: 17.5% 32.5% 22.5% 25% / 20% 22.5% 27.5% 30%;
+  }
+
+  33.333% {
+    border-radius: 22.5% 27.5% 25% 25% / 25% 25% 25% 25%;
+  }
+
+  50% {
+    border-radius: 27.5% 25% 27.5% 25% / 25% 25% 25% 25%;
+  }
+
+  66.666% {
+    border-radius: 32.5% 22.5% 30% 20% / 27.5% 22.5% 20% 27.5%;
+  }
+
+  83.333% {
+    border-radius: 13.5% 34.5% 20% 23% / 17% 19% 26% 27%;
+  }
+
+  100% {
+    border-radius: 13.5% 34.5% 20% 23% / 17% 19% 26% 27%;
+  }
+}
+
+@keyframes move2 {
+  0% {
+    border-radius: 10% 30% 15% 25% / 15% 25% 20% 25%;
+  }
+
+  20% {
+    border-radius: 30% 20% 35% 15% / 25% 20% 30% 15%;
+  }
+
+  40% {
+    border-radius: 10% 30% 15% 25% / 15% 25% 20% 25%;
+  }
+
+  60% {
+    border-radius: 30% 20% 35% 15% / 25% 20% 30% 15%;
+  }
+
+  80% {
+    border-radius: 10% 30% 15% 25% / 15% 25% 20% 25%;
+  }
+
+  100% {
+    border-radius: 10% 30% 15% 25% / 15% 25% 20% 25%;
+  }
+}
+
+@keyframes move3 {
+  0% {
+    border-radius: 12.5% 30% 20% 25% / 15% 25% 20% 25%;
+  }
+
+  16.666% {
+    border-radius: 25% 25% 25% 25% / 25% 25% 25% 25%;
+  }
+
+  33.333% {
+    border-radius: 32.5% 17.5% 27.5% 22.5% / 27.5% 22.5% 22.5% 27.5%;
+  }
+
+  50% {
+    border-radius: 25% 25% 25% 25% / 25% 25% 25% 25%;
+  }
+
+  66.666% {
+    border-radius: 12.5% 30% 20% 25% / 15% 25% 20% 25%;
+  }
+
+  83.333% {
+    border-radius: 7.5% 32.5% 12.5% 30% / 17.5% 30% 15% 25%;
+  }
+
+  100% {
+    border-radius: 12.5% 30% 20% 25% / 15% 25% 20% 25%;
+  }
+}
