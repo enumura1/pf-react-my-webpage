@@ -1,0 +1,28 @@
+a {
+  position: relative;
+  display: inline-block;
+  transition: 0.3s;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: rgb(0, 91, 165);
+  transition: 0.3s;
+  transform: translateX(-50%);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+a:hover {
+  color: rgb(111, 190, 255);
+  transition: 0.3s;
+}

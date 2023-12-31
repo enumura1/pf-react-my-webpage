@@ -13,7 +13,7 @@ interface reShowEarthProps {
 }
 
 // 78~101
-export default function btmEarth(props:reShowEarthProps) {
+export default function reShowEarth(props:reShowEarthProps) {
     const {
         camera, 
         model, 
