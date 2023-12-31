@@ -31,6 +31,7 @@ import reShowEarth from './animation/ReShowEarth';
 import lerp from './utils/LinearCompletionFormula';
 import createParticles from './utils/createParticles';
 import createScene from './utils/createScene';
+import handleScroll from './utils/HandleScroll';
 
 // 外部コンポーネントのインポート
 import Pointer from './components/MouseCursor';
@@ -266,14 +267,9 @@ export default function App() {
       });
     }
 
-    const handleScroll = () => {
-      scrollPercent.current =
-        (document.documentElement.scrollTop /
-          (document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
-        100;
-    };
+    const fetchHandleScroll = handleScroll(scrollPercent);
+    document.body.onscroll = fetchHandleScroll;
 
-    document.body.onscroll = handleScroll;
     window.addEventListener(
         'resize',  
         () => {handleResize(camera, renderer, sizes)});
@@ -297,22 +293,20 @@ export default function App() {
   
   return (
     <>
-        <body className="text-white">
-            <canvas ref={canvasRef} />
-            <div>
-                <Pointer name="pointer is-small" position={mousePosition} />
-                <Pointer name="pointer" position={mousePosition} />
-                <Pointer name="pointer is-large" position={mousePosition} />
-            </div>
+      <canvas ref={canvasRef} />
+      <div>
+          <Pointer name="pointer is-small" position={mousePosition} />
+          <Pointer name="pointer" position={mousePosition} />
+          <Pointer name="pointer is-large" position={mousePosition} />
+      </div>
 
-            <main>
-                <TopContents/>
-                <Intro/>
-                <Makes/>
-                <Info imgScale1={imgScale1} imgScale2={imgScale2} imgScale3={imgScale3}/>
-                <Bottom/>
-            </main >
-        </body>
+      <main>
+          <TopContents/>
+          <Intro/>
+          <Makes/>
+          <Info imgScale1={imgScale1} imgScale2={imgScale2} imgScale3={imgScale3}/>
+          <Bottom/>
+      </main >
     </>
   );
 }
