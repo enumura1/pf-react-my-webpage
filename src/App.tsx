@@ -5,20 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-// 外部ファイルのインポート
-import "./css/App.css";
-import "./css/mouseCursor.css"
-import "./css/Liquid.css"
-import "./css/LinkDecoration.css"
-import "./css/MediaQuery.css"
-import "./css/Header.css"
-import "./css/TopContainer.css"
-import "./css/Makes.css"
-import "./css/PC.css"
-import "./css/Info.css"
-import "./css/Bottom.css"
-import "./css/ScrollBar.css"
-
 // 外部関数のインポート
 import handleResize from './utils/HandleResize';
 import showRoomAnimation from './animation/ShowRoom';
