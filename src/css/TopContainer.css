@@ -1,0 +1,50 @@
+.top-container {
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+  align-items: center;
+}
+
+.top-ctr-elem-left {
+  color: aliceblue;
+  text-shadow: 3px 3px 10px rgb(0, 136, 255);
+  width: 70%;
+  text-align: left;
+  padding-left: 8%;
+  font-size: 2.8rem;
+  letter-spacing: 5px;
+}
+
+.topContainerText {
+  opacity: 0;
+  transform: translateY(-100px);
+  animation: slideUp 1s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.top-ctr-elem-left P {
+  color: aliceblue;
+  font-weight: bold;
+  -webkit-text-stroke: 1px rgb(129, 196, 254);
+}
+
+.top-ctr-elem-left span {
+  color: rgb(129, 196, 254);
+  -webkit-text-stroke: 2px rgb(202, 230, 255);
+}
+
+.top-ctr-elem-right {
+  color: aliceblue;
+  width: 30%;
+}

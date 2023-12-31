@@ -1,0 +1,25 @@
+.house-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: center;
+}
+
+.hs-ctr-elem-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: aliceblue;
+  background: rgba(202, 202, 202, 0.31);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(202, 202, 202, 0.5);
+  width: 48%;
+  height: 90vh;
+  line-height: 3;
+  text-align: left;
+  padding-left: 3%;
+  margin-left: 2%;
+  letter-spacing: 3px;
+}

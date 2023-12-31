@@ -13,7 +13,7 @@ export default function Header (props:HeaderComponentProps) {
         <>
             <div className='header-container'>
                 {showTitle ? 
-                    (<h3 className="drwaingText headerText"><a href="/">enumura<span>3D</span></a></h3>) :
+                    (<h3 className="drwaingText headerText"><a href="/">enumura<span className="text-blue-950">3D</span></a></h3>) :
                         (<div>Loading...</div>)}
                     <div className='header-right-elem'>
                         {showheaderText ? (<div className="drwaingText headerText"><a href="https://qiita.com/enumura1">Qiita</a></div>) :
