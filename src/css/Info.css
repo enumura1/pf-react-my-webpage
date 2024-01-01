@@ -1,0 +1,36 @@
+.info-ctr-elem-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: aliceblue;
+  background: rgba(202, 202, 202, 0.31);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(202, 202, 202, 0.5);
+  width: 48%;
+  height: 90vh;
+  line-height: 3;
+  text-align: left;
+  padding-left: 3%;
+  margin-left: 2%;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+}
+
+.info-ctr-elem-left p {
+  margin-left: 2%;
+}
+
+.text-overflow {
+  max-width: 90%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.info-ctr-elem-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
