@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+// レスポンシブ対応
+import './css/MediaQuery.css';
+
 // 外部関数のインポート
 import handleResize from './utils/HandleResize';
 import showRoomAnimation from './animation/ShowRoom';

@@ -7,7 +7,7 @@ import './css/App.css';
 import './css/mouseCursor.css';
 import './css/Liquid.css';
 import './css/LinkDecoration.css';
-import './css/MediaQuery.css';
+
 import './css/Header.css';
 import './css/TopContainer.css';
 import './css/Makes.css';
