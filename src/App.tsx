@@ -27,26 +27,23 @@ import Makes from './components/Makes';
 import Info from './components/Info';
 import Bottom from './components/Bottom';
 
-
 export default function App() {
-    const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const scrollPercent = useRef(0);
-    const [imgScale1, setImgScale1] = useState(false);
-    const [imgScale2, setImgScale2] = useState(false);
-    const [imgScale3, setImgScale3] = useState(false);
-    
-    
-   // マウスの座標
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const scrollPercent = useRef(0);
+  const [imgScale1, setImgScale1] = useState(false);
+  const [imgScale2, setImgScale2] = useState(false);
+  const [imgScale3, setImgScale3] = useState(false);
+
+  // マウスの座標
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-
     // シーンの作成
-    const { sizes, scene, DirectionalLight, camera, renderer} = createScene(canvasRef);
+    const { sizes, scene, DirectionalLight, camera, renderer } = createScene(canvasRef);
 
     // 地球
-    let model:THREE.Object3D;
-    let earthMixer: any; 
+    let model: THREE.Object3D;
+    let earthMixer: any;
     const loader = new GLTFLoader();
     loader.load('assets/earth.glb', (gltf) => {
       model = gltf.scene;
@@ -62,7 +59,7 @@ export default function App() {
     });
 
     // 月
-    let moon:THREE.Object3D;
+    let moon: THREE.Object3D;
     const moonloader = new GLTFLoader();
     moonloader.load('assets/moon.glb', (gltf) => {
       moon = gltf.scene;
@@ -70,8 +67,8 @@ export default function App() {
     });
 
     // 部屋
-    let room:THREE.Object3D;
-    let roomMixer: any; 
+    let room: THREE.Object3D;
+    let roomMixer: any;
     const roomLoader = new GLTFLoader();
     roomLoader.load('assets/room.glb', (gltf) => {
       room = gltf.scene;
@@ -86,7 +83,7 @@ export default function App() {
     });
 
     // 紙飛行機
-    let paperAirPlane:THREE.Object3D;
+    let paperAirPlane: THREE.Object3D;
     const paperAirPlaneLoader = new GLTFLoader();
     paperAirPlaneLoader.load('assets/paper_airplane.glb', (gltf) => {
       paperAirPlane = gltf.scene;
@@ -116,12 +113,12 @@ export default function App() {
       playScrollAnimation();
     };
 
-    const scaleParcent = (start : number, end : number) => {
+    const scaleParcent = (start: number, end: number) => {
       return (scrollPercent.current - start) / (end - start);
     };
 
     // アニメーションの格納先
-    const animationScripts :any= [];
+    const animationScripts: any = [];
 
     // 地球が回転するアニメーション
     animationScripts.push({
@@ -136,7 +133,8 @@ export default function App() {
           paperAirPlane,
           DirectionalLight,
           lerp,
-          scaleParcent});
+          scaleParcent,
+        });
       },
     });
 
@@ -146,14 +144,15 @@ export default function App() {
       end: 20,
       function: () => {
         updateEarthTransparent({
-            camera, 
-            model, 
-            earthMixer, 
-            moon,
-            DirectionalLight, 
-            lerp, 
-            scaleParcent, 
-            paperAirPlane});
+          camera,
+          model,
+          earthMixer,
+          moon,
+          DirectionalLight,
+          lerp,
+          scaleParcent,
+          paperAirPlane,
+        });
       },
     });
 
@@ -163,12 +162,13 @@ export default function App() {
       end: 35,
       function: () => {
         showRoomAnimation({
-            camera, 
-            room, 
-            DirectionalLight,
-            lerp, 
-            scaleParcent});
-        },
+          camera,
+          room,
+          DirectionalLight,
+          lerp,
+          scaleParcent,
+        });
+      },
     });
 
     // 部屋拡大アニメーション
@@ -177,11 +177,12 @@ export default function App() {
       end: 50,
       function: () => {
         updateRoomTransparent({
-            camera, 
-            room, 
-            lerp, 
-            scaleParcent});
-        }
+          camera,
+          room,
+          lerp,
+          scaleParcent,
+        });
+      },
     });
 
     // PCアニメーションを再生
@@ -190,10 +191,11 @@ export default function App() {
       end: 55.5,
       function: () => {
         showPC({
-            camera, 
-            roomMixer, 
-            DirectionalLight});
-        },
+          camera,
+          roomMixer,
+          DirectionalLight,
+        });
+      },
     });
 
     //  PCが消えるアニメーション
@@ -202,10 +204,11 @@ export default function App() {
       end: 72,
       function: () => {
         updatePCTransparent({
-            room, 
-            lerp, 
-            scaleParcent});
-        },
+          room,
+          lerp,
+          scaleParcent,
+        });
+      },
     });
 
     animationScripts.push({
@@ -232,12 +235,13 @@ export default function App() {
       end: 101,
       function: () => {
         reShowEarth({
-            camera, 
-            model, 
-            earthMixer, 
-            lerp, 
-            scaleParcent});
-        },
+          camera,
+          model,
+          earthMixer,
+          lerp,
+          scaleParcent,
+        });
+      },
     });
 
     // アニメーション
@@ -246,7 +250,7 @@ export default function App() {
         return;
       }
 
-      animationScripts.forEach((animation:any) => {
+      animationScripts.forEach((animation: any) => {
         if (scrollPercent.current >= animation.start && scrollPercent.current < animation.end) {
           animation.function();
         }
@@ -256,43 +260,43 @@ export default function App() {
     const fetchHandleScroll = handleScroll(scrollPercent);
     document.body.onscroll = fetchHandleScroll;
 
-    window.addEventListener(
-        'resize',  
-        () => {handleResize(camera, renderer, sizes)});
+    window.addEventListener('resize', () => {
+      handleResize(camera, renderer, sizes);
+    });
     animate();
 
     return () => {
-      window.removeEventListener(
-        'resize', 
-        () => {handleResize(camera, renderer, sizes)});
+      window.removeEventListener('resize', () => {
+        handleResize(camera, renderer, sizes);
+      });
     };
   }, [scrollPercent]);
 
   // マウント時：マウスイベントリスナを追加
   useEffect(() => {
     const mouseMoveListener = (event: MouseEvent) => {
-        setMousePosition({ x: event.clientX, y: event.clientY });
-      };
-  
-      window.addEventListener("mousemove", mouseMoveListener);
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener('mousemove', mouseMoveListener);
   }, []);
-  
+
   return (
     <>
       <canvas ref={canvasRef} />
       <div>
-          <Pointer name="pointer is-small" position={mousePosition} />
-          <Pointer name="pointer" position={mousePosition} />
-          <Pointer name="pointer is-large" position={mousePosition} />
+        <Pointer name="pointer is-small" position={mousePosition} />
+        <Pointer name="pointer" position={mousePosition} />
+        <Pointer name="pointer is-large" position={mousePosition} />
       </div>
 
       <main>
-          <TopContents/>
-          <Intro/>
-          <Makes/>
-          <Info imgScale1={imgScale1} imgScale2={imgScale2} imgScale3={imgScale3}/>
-          <Bottom/>
-      </main >
+        <TopContents />
+        <Intro />
+        <Makes />
+        <Info imgScale1={imgScale1} imgScale2={imgScale2} imgScale3={imgScale3} />
+        <Bottom />
+      </main>
     </>
   );
 }
