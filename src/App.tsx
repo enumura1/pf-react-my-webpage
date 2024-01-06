@@ -282,7 +282,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div className='LoadedMain'>
       <canvas ref={canvasRef} />
       <div>
         <Pointer name="pointer is-small" position={mousePosition} />
@@ -297,6 +297,6 @@ export default function App() {
         <Info imgScale1={imgScale1} imgScale2={imgScale2} imgScale3={imgScale3} />
         <Bottom />
       </main>
-    </>
+    </div>
   );
 }

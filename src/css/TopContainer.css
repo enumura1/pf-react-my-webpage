@@ -15,7 +15,12 @@
   letter-spacing: 5px;
 }
 
+.top-ctr-elem-left h1 {
+  font-size: 4.5rem;
+}
+
 .topContainerText {
+  /* line-height: 2; */
   opacity: 0;
   transform: translateY(-100px);
   animation: slideUp 1s ease-out forwards;

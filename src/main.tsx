@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+
+// 外部関数のインポート
+import SwitchLoadedScreen from './components/SwitchLoadedScreen.tsx';
 
 // CSSのインポート
 import './css/App.css';
@@ -15,12 +17,14 @@ import './css/Info.css';
 import './css/Bottom.css';
 import './css/ScrollBar.css';
 import './css/index.css';
+import './css/LoadingScreen.css'
+import './css/LoadedScreen.css'
 
 // レスポンシブ対応
 import './css/common.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <SwitchLoadedScreen />
   </React.StrictMode>,
 );
