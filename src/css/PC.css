@@ -25,6 +25,9 @@
 .pc-ctr-elem-right h3 {
   margin-top: 3%;
   max-width: 90%;
+  color: aliceblue;
+  text-shadow: 2px 3px 4px #00123a;
+  font-weight: bold;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

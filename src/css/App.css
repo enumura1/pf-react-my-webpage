@@ -38,6 +38,7 @@ section {
 }
 
 .sectionTitle {
+  font-size: 3rem;
   animation: textShadowAnimation 5s linear infinite;
 }
 

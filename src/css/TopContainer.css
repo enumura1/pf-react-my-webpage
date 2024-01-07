@@ -20,7 +20,6 @@
 }
 
 .topContainerText {
-  /* line-height: 2; */
   opacity: 0;
   transform: translateY(-100px);
   animation: slideUp 1s ease-out forwards;
