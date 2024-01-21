@@ -22,14 +22,14 @@ export default function Header(props: HeaderComponentProps) {
         <div className="header-right-elem">
           {showheaderText ? (
             <div className="drwaingText headerText">
-              <a href="https://qiita.com/enumura1">Qiita</a>
+              <a href="https://qiita.com/enumura1" target="_blank" >Qiita</a>
             </div>
           ) : (
             <div>Loading...</div>
           )}
           {showheaderText ? (
             <div className="drwaingText headerText">
-              <a href="https://github.com/enumura1">GitHub</a>
+              <a href="https://github.com/enumura1" target="_blank" >GitHub</a>
             </div>
           ) : (
             <div></div>

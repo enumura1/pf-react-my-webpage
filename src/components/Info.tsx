@@ -18,17 +18,17 @@ export default function Info(props: InfoProps) {
           <h3>◆ Qiita</h3>
           </a>
           <p className="text-overflow">
-            <a href="https://qiita.com/enumura1/items/0aa345637529f582e1e6">
+            <a href="https://qiita.com/enumura1/items/0aa345637529f582e1e6" target="_blank" >
             📗【Webサイト制作】駆け出しエンジニアが1か月で作成したポートフォリオサイトの振り返り
             </a>
           </p>
           <p className="text-overflow">
-            <a href="https://qiita.com/enumura1/items/8449c2c0b00c8eeac6c6">
+            <a href="https://qiita.com/enumura1/items/8449c2c0b00c8eeac6c6" target="_blank" >
             📗【React】react-three-fiberで自作の3Dモデルを手軽にWebサイトに表示する
             </a>
           </p>
           <p className="text-overflow">
-            <a href="https://qiita.com/enumura1/items/c1dee84b87fc0f0692ad">
+            <a href="https://qiita.com/enumura1/items/c1dee84b87fc0f0692ad" target="_blank" >
             📗【React×Blender】react-three-fiberで表示した3Dモデルに発光感（ブルーム）を付ける
             </a>
           </p>
