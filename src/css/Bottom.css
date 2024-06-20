@@ -14,7 +14,7 @@
   bottom: 0;
   left: 0;
   background: url('vscode_screen_movie.gif');
-  opacity: 0.2;
+  opacity: 0.16;
   z-index: -1;
   background-size: cover;
   box-shadow: -5px -5px 10px 10px rgba(77, 77, 77, 0.8);

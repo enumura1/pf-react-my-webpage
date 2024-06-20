@@ -28,13 +28,13 @@ export default function Info(props: InfoProps) {
             </a>
           </p>
           <p className="text-overflow">
-            <a href="https://qiita.com/enumura1/items/c1dee84b87fc0f0692ad" target="_blank" >
-            📗【React×Blender】react-three-fiberで表示した3Dモデルに発光感（ブルーム）を付ける
+            <a href="https://qiita.com/enumura1/items/2d8ec02af2050f592a74" target="_blank" >
+            📗【個人開発】Reactでうねうねアニメーションライブラリ作ってみた
             </a>
           </p>
           <h3>◆ Blender</h3>
           <p>Blenderで画像のような3Dモデル作成しています。</p>
-          <p>今年の目標はアバター作成です。</p>
+          <p>パーティクルアニメーション勉強中。</p>
         </div>
         <div className="info-ctr-elem-right">
           <div className="info-img-topCtr">
